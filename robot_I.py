@@ -46,7 +46,7 @@ def pick(marker_id):
 def move(marker_id):
     #find the marker id
     #find the Transform matrix
-    final_tf,final_quat=get_tf(28)
+    final_tf,final_quat=get_tf(marker_id)
     print("Final_TF : ")
     print(final_tf)
     cartesian_plan, fraction = tutorial.plan_cartesian_path(final_tf,final_quat)
