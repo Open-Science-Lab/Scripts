@@ -1,6 +1,8 @@
 import paho.mqtt.client as paho
 from paho.mqtt import client as mqtt_client
 import random
+from const import to_place
+from main import perform
 
 broker="10.156.248.70"
 port=1883
@@ -31,18 +33,14 @@ def subscribe(client: mqtt_client):
         str=msg.payload.decode()
         x=str.split(",")
         print(type(x))
-        to_pick=x[1]
-        to_place=x[0]
-        to_place_id=0
-        option=x[2]
-        print(str)
-         
+        operation=x[0]
+        target=x[1]
+        if(operation!="pour"):
+        timer=None
+        else:
+        timer=x[2]
         flag=0
-
-        if to_place=='1':
-            to_place_id=2
-        if to_place=='2':
-            to_place_id=34
+        perform_exp(x)
     client.subscribe(subscribe_topic)
     client.on_message = on_message
 
